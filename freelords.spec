@@ -15,7 +15,6 @@ BuildRequires:	paragui-devel
 BuildRequires:	qt-devel >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 
 %description
 FreeLords is a turn-based strategy game. There can be various goals to
