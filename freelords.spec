@@ -14,7 +14,7 @@ BuildRequires:	SDL_image-devel >= 1.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
-BuildRequires:	libsigc++-devel >= 1.2.1
+BuildRequires:	libsigc++12-devel >= 1.2.1
 BuildRequires:	libtool
 BuildRequires:	paragui-devel >= 1.0.4
 BuildRequires:	qt-devel >= 2.2.0
