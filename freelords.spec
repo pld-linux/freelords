@@ -16,7 +16,7 @@ BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++12-devel >= 1.2.1
 BuildRequires:	libtool
-BuildRequires:	paragui-devel >= 1.0.4
+BuildRequires:	paragui1-devel >= 1.0.4
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,10 +53,12 @@ install -d $RPM_BUILD_ROOT/etc
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/freelordsrc
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/* AUTHORS ChangeLog TODO
 %attr(644,root,root) %config(noreplace) %verify(not size mtime md5) /etc/*
