@@ -1,12 +1,12 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.3.1
+Version:	0.3.2
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://dl.sourceforge.net/freelords/%{name}-%{version}.tar.bz2
-# Source0-md5:	614776752fe166e3c5fcd107e42bfd4b
+# Source0-md5:	bd04208d60d53134ee82a50e18887ac2
 Source1:	%{name}rc.conf
 Patch0:		%{name}-configure_in.patch
 URL:		http://www.freelords.org/
