@@ -14,6 +14,21 @@
  TARGET		= freelords
  
  OBJECTS		= main.o 
+@@ -15,11 +17,11 @@
+ 	@echo "FreeLords has successfully built"
+ 
+ MYLIBS: 
+-	cd common; $(MAKE);
+-	cd graphic; $(MAKE);
++	cd common; $(MAKE) CXXFLAGS="$(CXXFLAGS)";
++	cd graphic; $(MAKE) CXXFLAGS="$(CXXFLAGS)";
+ 
+ $(TARGET): $(OBJECTS) 
+-	$(CXX) -Wall $(W_ERROR) -g $(LFLAGS) $(OBJECTS) -o $(TARGET)
++	$(CXX) -Wall $(W_ERROR) $(LFLAGS) $(LIBS) $(OBJECTS) -o $(TARGET)
+ 
+ clean:
+ 	cd common && $(MAKE) clean
 --- freelords/src/common/Makefile~	Wed Sep 18 16:29:08 2002
 +++ freelords/src/common/Makefile	Wed Sep 18 16:29:08 2002
 @@ -1,8 +1,9 @@
