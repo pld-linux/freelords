@@ -1,22 +1,22 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.3
+Version:	0.3.1
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}_%{version}.tar.bz2
-# Source0-md5:	d3187688a626d86fe7ff532e285a89ca
+Source0:	http://dl.sourceforge.net/freelords/%{name}-%{version}.tar.bz2
+# Source0-md5:	614776752fe166e3c5fcd107e42bfd4b
 Source1:	%{name}rc.conf
 Patch0:		%{name}-configure_in.patch
 URL:		http://www.freelords.org/
-BuildRequires:	SDL_image-devel
+BuildRequires:	SDL_image-devel >= 1.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++-devel >= 1.2.1
 BuildRequires:	libtool
-BuildRequires:	paragui-devel
+BuildRequires:	paragui-devel >= 1.0.4
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,7 +32,7 @@ ró¿ne np. zniszczenie wszystkich przeciwników, zebranie okre¶lonej
 sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %prep
-%setup  -q  -n freelords_sdl
+%setup -q 
 %patch0 -p0
 
 %build
