@@ -1,23 +1,86 @@
-diff -urN freelords.org/src/Makefile freelords/src/Makefile
---- freelords.org/src/Makefile	Sat Feb 17 15:11:25 2001
-+++ freelords/src/Makefile	Sat Feb 17 15:23:13 2001
-@@ -4,7 +4,7 @@
+--- freelords/src/Makefile~	Mon Aug  5 11:55:16 2002
++++ freelords/src/Makefile	Wed Sep 18 16:49:45 2002
+@@ -1,10 +1,12 @@
+ # Makefile for src
  
  CXX		= g++
- QTDIRECTORY	= $(QTDIR)
--MOC		= $(QTDIRECTORY)/bin/moc
-+MOC		= /usr/X11R6/bin/moc
- 
- COMMON_OBJECTS	= common/mapdef.o common/army.o common/citylist.o 	\
- 		  common/stacklist.o common/ruinlist.o 			\
-@@ -38,8 +38,8 @@
- 
- ALL_OBJECTS	= $(COMMON_OBJECTS) $(GRAPHIC_OBJECTS) $(OBJECTS) $(MOC_OBJECTS)
- 
--LFLAGS		= -lqt -L$(QTDIRECTORY)/lib
--CPPFLAGS	= -g -Wall -Werror -Wpointer-arith -Wbad-function-cast -I$(QTDIRECTORY)/include -I/usr/X11R6/include
-+LFLAGS		= -lqt -L/usr/X11R6/lib
-+CPPFLAGS	= $(OPT_FLAGS) -Wall -Wpointer-arith -Wbad-function-cast -I/usr/X11R6/include/qt -I/usr/X11R6/include
++CXXFLAGS	= -O2
+ INCLUDES	= -Icommon -Igraphic
+ CPPFLAGS	= -g -Wall -Werror $(INCLUDES) `paragui-config --cflags`
+ PROFILERFLAGS	= -pg -fprofile-arcs
+-LFLAGS		= `paragui-config --libs` -L/usr/lib -lSDL_image -lexpat -L./common -lflcommon -L./graphic -lflgraphic
++LDFLAGS		= -s
++LIBS		= `paragui-config --libs` -lSDL_image -lexpat -L./common -lflcommon -L./graphic -lflgraphic
  TARGET		= freelords
  
- # Important pattern rule for making moc files :)
+ OBJECTS		= main.o 
+--- freelords/src/common/Makefile~	Wed Sep 18 16:29:08 2002
++++ freelords/src/common/Makefile	Wed Sep 18 16:29:08 2002
+@@ -1,8 +1,9 @@
+ # Makefile for src/common
+ 
+ CXX		= g++
++CXXFLSGS	= -O2 -g
+ INCLUDES = -I. -I../graphic
+-CPPFLAGS	= -g -Wall -Werror -fPIC `paragui-config --cflags` $(INCLUDES)
++CPPFLAGS	= -Wall -fPIC `paragui-config --cflags` $(INCLUDES)
+ PROFILERFLAGS   = -pg -fprofile-arcs
+ LFLAGS		= `paragui-config --libs`
+ OBJECTS		= \
+@@ -16,16 +17,17 @@
+ # Important pattern rule for making object files :)
+ 
+ %.o: %.cpp %.h
+-	$(CXX) $(CPPFLAGS) -c $< -o $@
++	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
+ 
+ # Main Target
+ # NOTE: remove the symbolic link so we don't get an errormessage if it already exists
+ # TODO: sym. links can't be created under windows! there has to be a better way ;)
+ 
+ $(TARGET): $(OBJECTS)
+-	$(CXX) -g -shared -Wl,-soname,libflcommon.so $(OBJECTS) -o $(TARGET) -lc
+-	-rm -f libflcommon.so
+-	-ln -s libflcommon.so.0.1.0 libflcommon.so
++	$(CXX) -shared -Wl,-soname,libflcommon.so.0 $(OBJECTS) -o $(TARGET) -lc
++	-rm -f libflcommon.so.0 libflcommon.so
++	-ln -s libflcommon.so.0.1.0 libflcommon.so.0
++	-ln -s libflcommon.so.0 libflcommon.so
+ 
+ clean:
+ 	-rm -f $(OBJECTS) $(TARGET) *.da *~ libflcommon.so
+--- freelords/src/graphic/Makefile~	Wed Sep 18 16:31:46 2002
++++ freelords/src/graphic/Makefile	Wed Sep 18 16:31:46 2002
+@@ -1,8 +1,9 @@
+ # Makefile for src/graphics
+ 
+ CXX		= g++
++CXXFLAGS	= -O2 -g
+ INCLUDES	= -I../common -I.
+-CPPFLAGS	= -g -Wall -Werror -fPIC `paragui-config --cflags` $(INCLUDES) 
++CPPFLAGS	= -Wall -fPIC `paragui-config --cflags` $(INCLUDES) 
+ PROFILERFLAGS   = -pg -fprofile-arcs
+ LFLAGS		= `paragui-config --libs`
+ OBJECTS		= \
+@@ -17,16 +18,17 @@
+ # Important pattern rule for making object files :)
+ 
+ %.o: %.cpp %.h
+-	$(CXX) $(CPPFLAGS) -c $< -o $@
++	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
+ 
+ # Main Target
+ # NOTE: remove the symbolic link so that we don't get an errormessage if it already exists
+ # TODO: this can't be done on MS Windows, there has to be another way ;)
+ 
+ $(TARGET): $(OBJECTS)
+-	$(CXX) -g -shared -Wl,-soname,libflgraphic.so $(OBJECTS) -o $(TARGET) -lc
+-	-rm -f libflgraphic.so
+-	-ln -s libflgraphic.so.0.1.0 libflgraphic.so
++	$(CXX) -shared -Wl,-soname,libflgraphic.so.0.1.0 $(OBJECTS) -o $(TARGET) -lc
++	-rm -f libflgraphic.so libflgraphic.so.0
++	-ln -s libflgraphic.so.0.1.0 libflgraphic.so.0
++	-ln -s libflgraphic.so.0 libflgraphic.so
+ 
+ clean:
+ 	-rm -f $(OBJECTS) $(TARGET) *.da *~ libflgraphic.so
