@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	b87f3b506c6567a1932e333459a5b9bb
 Source1:	%{name}rc.conf
 URL:		http://www.freelords.org/
 BuildRequires:	SDL_image-devel
