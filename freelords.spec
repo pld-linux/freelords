@@ -30,19 +30,20 @@ okupacja okre¶lonego miasta i inne.
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
+find . -type d -name 'CVS'| xargs rm -rf
 
 %build
-OPT_FLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"; export OPT_FLAGS
+OPT_FLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS -fno-rtti -fno-exceptions}"
+export OPT_FLAGS
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_bindir}}
 
-find . -type d -name 'CVS'| xargs rm -rf
-install src/%{name}		$RPM_BUILD_ROOT%{_bindir}
-cp -a	pic/*			$RPM_BUILD_ROOT%{_datadir}/%{name}
-install src/*.py		$RPM_BUILD_ROOT%{_datadir}/%{name}
+install src/%{name} $RPM_BUILD_ROOT%{_bindir}
+cp -a pic/* $RPM_BUILD_ROOT%{_datadir}/%{name}
+install src/*.py $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 gzip -9nf doc/* AUTHORS README ChangeLog NEWS TODO
 
