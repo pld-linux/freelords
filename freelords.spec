@@ -1,8 +1,8 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.1.5
-Release:	0.1
+Version:	0.1.6
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.gz
@@ -46,13 +46,11 @@ install src/%{name} $RPM_BUILD_ROOT%{_bindir}
 cp -a pic/* $RPM_BUILD_ROOT%{_datadir}/%{name}
 install src/*.py $RPM_BUILD_ROOT%{_datadir}/%{name}
 
-gzip -9nf doc/* AUTHORS README ChangeLog NEWS TODO
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz doc/*.gz
+%doc doc/* AUTHORS ChangeLog TODO
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
