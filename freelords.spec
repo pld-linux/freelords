@@ -13,6 +13,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++-devel >= 1.2.1
 BuildRequires:	paragui-devel
 BuildRequires:	qt-devel >= 2.2.0
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
