@@ -1,8 +1,8 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.1.6
-Release:	2
+Version:	0.2.2
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.gz
@@ -11,6 +11,7 @@ Patch1:		%{name}-path.patch
 URL:		http://www.freelords.org/
 BuildRequires:	SDL_image-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	libsigc++-devel >= 1.2.1
 BuildRequires:	paragui-devel
 BuildRequires:	qt-devel >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -27,13 +28,16 @@ ró¿ne np. zniszczenie wszystkich przeciwników, zebranie okre¶lonej
 sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
-find . -type d -name 'CVS'| xargs rm -rf
+%setup -q
+#%patch0 -p2
+#%patch1 -p2
 
 %build
-%{__make} CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%configure
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
