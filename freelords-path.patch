@@ -1,117 +1,24 @@
-diff -urN freelords.org/src/common/armyset.cpp freelords/src/common/armyset.cpp
---- freelords.org/src/common/armyset.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/common/armyset.cpp	Sat Feb 17 15:29:29 2001
-@@ -42,11 +42,11 @@
- 	int strength, moves, upkeep, production, defence, vitality, production_cost, HP;
+--- freelords/src/common/mapdef.cpp.orig	Wed Jan 16 17:24:34 2002
++++ reelords/src/common/mapdef.cpp	Tue Sep  3 20:53:14 2002
+@@ -371,7 +371,7 @@
+ 			// and all variations of this tile
+ 			for (int k = 0; k < 6; k++)
+ 			{
+-				sprintf(fname, "../pic/map/default/%s_%i_%i.png", name, j, k);
++				sprintf(fname, "/usr/X11R6/share/freelords/default/%s_%i_%i.png", name, j, k);
  
- 	// filename of the armydescription file
--	QString file("../pic/army/");
-+	QString file("/usr/X11R6/share/freelords/army/");
- 	file += name + "/default";
+ 				SDL_Surface* newpic = IMG_Load(fname);
+ 				if (newpic != 0)
+--- freelords/src/graphic/hero_offer.cpp.orig	Mon Aug  5 11:55:16 2002
++++ freelords/src/graphic/hero_offer.cpp	Wed Sep 18 16:44:40 2002
+@@ -61,8 +61,8 @@
+ 			(MSG_CALLBACK_OBJ)&Hero_offer::b_reject_clicked);
  
- 	// path to the pics of this armyset
--	QString pic_path("../pic/army/");
-+	QString pic_path("/usr/X11R6/share/freelords/army/");
- 	pic_path += name;
- 
- 	// Open file
-@@ -73,7 +73,7 @@
- 			       moves, upkeep, production, production_cost);
- 
- 		// filename of the armypicture to load
--		QString str("../pic/army/");
-+		QString str("/usr/X11R6/share/freelords/army/");
- 		str += name + "/" + pic_name;
- 		army[i]->set_pixmap(pics->load(str));
- 
-diff -urN freelords.org/src/common/game_scenario.cpp freelords/src/common/game_scenario.cpp
---- freelords.org/src/common/game_scenario.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/common/game_scenario.cpp	Sat Feb 17 15:28:35 2001
-@@ -63,7 +63,7 @@
- 
- 	// now let's load the correct mapset
- 	if ((map_type == RANDOM) || (map_type == PREVIOUS))
--	       mapdef->load_mapset("../pic/map/default/default");	// random map chosen
-+	       mapdef->load_mapset("/usr/X11R6/share/freelords/map/default/default");	// random map chosen
- 	else mapdef->load_mapset(mapdef->extract_mapset(map_file));
- 
- 	load_armyset();
-@@ -75,7 +75,7 @@
- 		// create map + cities
- 		if (map_type == RANDOM)
- 		{
--			system("./genmap.py > random.map");	// execute random map generator
-+			system("/usr/X11R6/share/freelords/genmap.py > random.map");	// execute random map generator
- 			mapdef->random();			// load the created map saved in random.map
- 		}
- 		if (map_type == LOADED) mapdef->load(map_file);
-diff -urN freelords.org/src/common/mapdef.cpp freelords/src/common/mapdef.cpp
---- freelords.org/src/common/mapdef.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/common/mapdef.cpp	Sat Feb 17 15:27:08 2001
-@@ -304,7 +304,7 @@
- 		m->set_color(color);
- 		mapset.append(m);
- 
--		QString str("../pic/map/default/");
-+		QString str("/usr/X11R6/share/freelords/default/");
- 		str += buffer;
- 		str += "_";
- 
-diff -urN freelords.org/src/common/pics.cpp freelords/src/common/pics.cpp
---- freelords.org/src/common/pics.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/common/pics.cpp	Sat Feb 17 15:26:45 2001
-@@ -30,11 +30,11 @@
- 
- Pics::Pics()
- {  
--	city = load("../pic/map/default/city.png");
--	ruin = load("../pic/map/default/ruin.png");
--	temple = load("../pic/map/default/temple.png");
--	sword = load("../pic/various/sword.png");
--	splash_screen = load("../pic/various/splash_screen.png");
-+	city = load("/usr/X11R6/share/freelords/map/default/city.png");
-+	ruin = load("/usr/X11R6/share/freelords/map/default/ruin.png");
-+	temple = load("/usr/X11R6/share/freelords/map/default/temple.png");
-+	sword = load("/usr/X11R6/share/freelords/various/sword.png");
-+	splash_screen = load("/usr/X11R6/share/freelords/various/splash_screen.png");
- }
- 
- Pics::~Pics()
-diff -urN freelords.org/src/graphic/hero_offer.cpp freelords/src/graphic/hero_offer.cpp
---- freelords.org/src/graphic/hero_offer.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/graphic/hero_offer.cpp	Sat Feb 17 15:31:14 2001
-@@ -43,8 +43,8 @@
- 	b_reject = new QPushButton("&Reject", this);
- 	b_reject->setGeometry(width()-155, 70, 70, 25);
- 
--	if (gender == MALE) system("./hero_male_names.py 1 > new_name");// generate a male name
--	else system("./hero_female_names.py 1 > new_name");		// generate a female name
-+	if (gender == MALE) system("/usr/X11R6/share/freelords/hero_male_names.py 1 > new_name");// generate a male name
-+	else system("/usr/X11R6/share/freelords/hero_female_names.py 1 > new_name");		// generate a female name
- 
- 	ifstream name_file("new_name");			// get name
- 
-diff -urN freelords.org/src/graphic/player_preferences.cpp freelords/src/graphic/player_preferences.cpp
---- freelords.org/src/graphic/player_preferences.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/graphic/player_preferences.cpp	Sat Feb 17 15:30:17 2001
-@@ -16,7 +16,7 @@
- #include <qdir.h>
- #include <qlabel.h>
- 
--#define PATH_ARMYSET "../pic/army/"
-+#define PATH_ARMYSET "/usr/X11R6/share/freelords/army/"
- 
- Player_preferences::Player_preferences(QWidget* parent, const char* name)
- 	:QGroupBox(4, QGroupBox::Vertical, "Player preferences", parent, name)
-diff -urN freelords.org/src/graphic/selector.cpp freelords/src/graphic/selector.cpp
---- freelords.org/src/graphic/selector.cpp	Sat Feb 17 15:11:25 2001
-+++ freelords/src/graphic/selector.cpp	Sat Feb 17 15:27:28 2001
-@@ -17,7 +17,7 @@
- #include "selector.h"
- 
- Selector::Selector(QCanvas* canvas)
--	:QCanvasSprite(new QCanvasPixmapArray("../pic/various/select%1.png", 2),
-+	:QCanvasSprite(new QCanvasPixmapArray("/usr/X11R6/share/freelords/various/select%1.png", 2),
- 						canvas)
- {
- 	  c = canvas;
+ 	// generate a name depending on sex of hero
+-	if (d_gender == MALE) system("./hero_names.pyw 1 m");
+-	else system("./hero_female_names.pyw 1 f");
++	if (d_gender == MALE) system("/usr/X11R6/share/freelords/hero_names.pyw 1 m");
++	else system("/usr/X11R6/share/freelords/hero_female_names.pyw 1 f");
+ 	
+     char new_name[80];
+ 	std::ifstream name_file("new_name");
