@@ -4,11 +4,12 @@ Name:		freelords
 Version:	0.0.6
 Release:	1
 License:	GPL
-Group:		X11/Games/Strategy
-Group(pl):	X11/Gry/Strategiczne
+Group:		X11/Applications/Games/Strategy
+Group(de):	X11/Applikationen/Spiele/Strategie
+Group(pl):	X11/Aplikacje/Gry/Strategiczne
 Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.gz
-Patch0:		freelords-make.patch
-Patch1:		freelords-path.patch
+Patch0:		%{name}-make.patch
+Patch1:		%{name}-path.patch
 URL:		http://www.freelords.org/
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	libstdc++-devel
@@ -17,14 +18,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 
 %description
-FreeLords is a turn-based strategy game. There can be various goals to achieve
-like e.g.: destroying all enemies, gathering a specific amount of money, occupying
-a certain city, ...
+FreeLords is a turn-based strategy game. There can be various goals to
+achieve like e.g.: destroying all enemies, gathering a specific amount
+of money, occupying a certain city, ...
 
 %description -l pl
-FreeLords to gra strategiczna z podzia³em na tury. Cele gry mog± byæ ró¿ne np.
-zniszczenie wszystkich przeciwników, zebranie okre¶lonej sumy pieniêdzy,
-okupacja okre¶lonego miasta i inne.
+FreeLords to gra strategiczna z podzia³em na tury. Cele gry mog± byæ
+ró¿ne np. zniszczenie wszystkich przeciwników, zebranie okre¶lonej
+sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %prep
 %setup -q -n %{name}
@@ -33,7 +34,7 @@ okupacja okre¶lonego miasta i inne.
 find . -type d -name 'CVS'| xargs rm -rf
 
 %build
-OPT_FLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS -fno-rtti -fno-exceptions}"
+OPT_FLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 export OPT_FLAGS
 %{__make}
 
