@@ -38,19 +38,18 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-
 %configure \
 	--disable-paraguitest
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT/etc
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/freelordsrc
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/freelordsrc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
