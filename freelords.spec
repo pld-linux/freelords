@@ -1,12 +1,12 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.3.2
+Version:	0.3.3
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://dl.sourceforge.net/freelords/%{name}-%{version}.tar.bz2
-# Source0-md5:	bd04208d60d53134ee82a50e18887ac2
+# Source0-md5:	7aa016ba4eb92b4f16bd18beba8f3026
 Source1:	%{name}rc.conf
 Patch0:		%{name}-configure_in.patch
 URL:		http://www.freelords.org/
@@ -40,7 +40,7 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure \
+PARAGUI_CONFIG="%{_bindir}/paragui1-config" %configure \
 	--disable-paraguitest
 %{__make}
 
