@@ -36,8 +36,8 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 %{__autoconf}
 %{__automake}
 
-%configure
-
+%configure \
+	--disable-paraguitest
 %{__make} 
 
 %install
