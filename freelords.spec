@@ -5,8 +5,6 @@ Version:	0.0.6
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
-Group(de):	X11/Applikationen/Spiele/Strategie
-Group(pl):	X11/Aplikacje/Gry/Strategiczne
 Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-path.patch
