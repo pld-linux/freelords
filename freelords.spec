@@ -40,7 +40,7 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 %{__automake}
 %configure \
 	--disable-paraguitest
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
