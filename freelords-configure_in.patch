@@ -1,0 +1,11 @@
+--- configure.in~	2003-10-11 14:53:12.000000000 +0200
++++ configure.in	2003-10-14 16:06:01.000000000 +0200
+@@ -84,7 +84,7 @@
+ fi
+ 
+ FREELORDS_DATADIR="$datadir/freelords"
+-FREELORDS_DATADIR=${FREELORDS_DATADIR/'${prefix}'/$prefix}
++#FREELORDS_DATADIR=${FREELORDS_DATADIR/'${prefix}'/$prefix}
+ AC_SUBST(FREELORDS_DATADIR)
+ 
+ 
