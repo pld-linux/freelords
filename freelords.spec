@@ -9,13 +9,15 @@ Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz
 Source1:	%{name}rc.conf
 URL:		http://www.freelords.org/
 BuildRequires:	SDL_image-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++-devel >= 1.2.1
+BuildRequires:	libtool
 BuildRequires:	paragui-devel
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 FreeLords is a turn-based strategy game. There can be various goals to
