@@ -5,7 +5,7 @@ Version:	0.2.3
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
-Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
 Source1:	%{name}rc.conf
 URL:		http://www.freelords.org/
 BuildRequires:	SDL_image-devel
