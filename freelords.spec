@@ -1,13 +1,12 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.2.2
+Version:	0.2.3
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
-Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.gz
-Patch0:		%{name}-make.patch
-Patch1:		%{name}-path.patch
+Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.bz2
+Source1:	%{name}rc.conf
 URL:		http://www.freelords.org/
 BuildRequires:	SDL_image-devel
 BuildRequires:	libstdc++-devel
@@ -29,28 +28,25 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %prep
 %setup -q
-#%patch0 -p2
-#%patch1 -p2
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__automake}
+
 %configure
+
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_bindir},%{_libdir}}
 
-install src/%{name} $RPM_BUILD_ROOT%{_bindir}
-install src/{common,graphic}/lib*so.*.* $RPM_BUILD_ROOT%{_libdir}
+install -d $RPM_BUILD_ROOT/etc
 
-cp -a pic/* $RPM_BUILD_ROOT%{_datadir}/%{name}
-install src/*.py $RPM_BUILD_ROOT%{_datadir}/%{name}
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/freelordsrc
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -58,6 +54,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/* AUTHORS ChangeLog TODO
+%attr(644,root,root) %config(noreplace) %verify(not size mtime md5) /etc/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_datadir}/%{name}
