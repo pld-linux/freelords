@@ -1,16 +1,18 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.0.6
-Release:	1
+Version:	0.1.5
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://download.freelords.org/sources/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-path.patch
 URL:		http://www.freelords.org/
-BuildRequires:	qt-devel >= 2.2.0
+BuildRequires:	SDL_image-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	paragui-devel
+BuildRequires:	qt-devel >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -27,8 +29,8 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 find . -type d -name 'CVS'| xargs rm -rf
 
 %build
