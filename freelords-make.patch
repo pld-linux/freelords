@@ -1,0 +1,23 @@
+diff -urN freelords.org/src/Makefile freelords/src/Makefile
+--- freelords.org/src/Makefile	Sat Feb 17 15:11:25 2001
++++ freelords/src/Makefile	Sat Feb 17 15:23:13 2001
+@@ -4,7 +4,7 @@
+ 
+ CXX		= g++
+ QTDIRECTORY	= $(QTDIR)
+-MOC		= $(QTDIRECTORY)/bin/moc
++MOC		= /usr/X11R6/bin/moc
+ 
+ COMMON_OBJECTS	= common/mapdef.o common/army.o common/citylist.o 	\
+ 		  common/stacklist.o common/ruinlist.o 			\
+@@ -38,8 +38,8 @@
+ 
+ ALL_OBJECTS	= $(COMMON_OBJECTS) $(GRAPHIC_OBJECTS) $(OBJECTS) $(MOC_OBJECTS)
+ 
+-LFLAGS		= -lqt -L$(QTDIRECTORY)/lib
+-CPPFLAGS	= -g -Wall -Werror -Wpointer-arith -Wbad-function-cast -I$(QTDIRECTORY)/include -I/usr/X11R6/include
++LFLAGS		= -lqt -L/usr/X11R6/lib
++CPPFLAGS	= $(OPT_FLAGS) -Wall -Wpointer-arith -Wbad-function-cast -I/usr/X11R6/include/qt -I/usr/X11R6/include
+ TARGET		= freelords
+ 
+ # Important pattern rule for making moc files :)
