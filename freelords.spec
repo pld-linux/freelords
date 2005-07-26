@@ -1,12 +1,12 @@
 Summary:	Strategy game
 Summary(pl):	Gra strategiczna
 Name:		freelords
-Version:	0.3.4
-Release:	0.2
+Version:	0.3.5
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games/Strategy
 Source0:	http://dl.sourceforge.net/freelords/%{name}-%{version}.tar.bz2
-# Source0-md5:	2a42ed5939e57434028ae38a1d8c98c3
+# Source0-md5:	263887334afa2df5a34cc9ce9163bfe3
 Source1:	%{name}rc.conf
 Patch0:		%{name}-configure_in.patch
 Patch1:		%{name}-types.patch
@@ -17,7 +17,7 @@ BuildRequires:	automake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++12-devel >= 1.2.1
 BuildRequires:	libtool
-BuildRequires:	paragui1-devel >= 1.0.4
+BuildRequires:	paragui-devel >= 1.1.8
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,9 +42,7 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure \
-	PARAGUI_CONFIG="%{_bindir}/paragui1-config" \
-	--disable-paraguitest
+%configure
 %{__make}
 
 %install
