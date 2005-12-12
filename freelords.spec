@@ -14,12 +14,12 @@ URL:		http://www.freelords.org/
 BuildRequires:	SDL_image-devel >= 1.2.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libstdc++-devel
 BuildRequires:	libsigc++12-devel >= 1.2.1
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	paragui-devel >= 1.1.8
-BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	pkgconfig
+BuildRequires:	qt-devel >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,7 +33,7 @@ ró¿ne np. zniszczenie wszystkich przeciwników, zebranie okre¶lonej
 sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p0
 %patch1 -p1
 
@@ -47,12 +47,12 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/freelordsrc
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/freelordsrc
 
 %find_lang %{name}
 
@@ -62,6 +62,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/* AUTHORS ChangeLog TODO
-%attr(644,root,root) %config(noreplace) %verify(not size mtime md5) /etc/*
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
