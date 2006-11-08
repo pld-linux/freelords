@@ -1,0 +1,70 @@
+--- freelords-0.3.7/configure.ac~	2006-11-08 20:57:29.000000000 +0100
++++ freelords-0.3.7/configure.ac	2006-11-08 21:04:17.000000000 +0100
+@@ -168,22 +168,22 @@
+ AM_CONDITIONAL([WANT_EDITOR], [test $use_editor = "yes"])
+ 
+ dnl Should GGZ support be compiled in for server and client?
+-AC_ARG_ENABLE(ggz,
+-             [  --enable-ggz    enable ggz support (default=no)],,
+-             enable_ggz=no
+-)
+-if test x$enable_ggz = xyes; then
+-	AC_GGZ_INIT(defaults, export)
+-	AC_GGZ_GGZDMOD([], [enable_ggz=no])
+-	AC_GGZ_SERVER([], [enable_ggz=no])
+-	AC_GGZ_GGZMOD([], [enable_ggz=no])
+-	AC_GGZ_CONFIG([], [enable_ggz=no])
+-	if test x$enable_ggz = xyes; then
+-		AC_GGZ_VERSION(0, 0, 12)
+-		AC_DEFINE([WITH_GGZ], 1, [Enable GGZ support])
+-	fi
+-fi
+-AM_CONDITIONAL([GGZSUPPORT], [test "x$enable_ggz" = "xyes"])
++#AC_ARG_ENABLE(ggz,
++#             [  --enable-ggz    enable ggz support (default=no)],,
++#             enable_ggz=no
++#)
++#if test x$enable_ggz = xyes; then
++#	AC_GGZ_INIT(defaults, export)
++#	AC_GGZ_GGZDMOD([], [enable_ggz=no])
++#	AC_GGZ_SERVER([], [enable_ggz=no])
++#	AC_GGZ_GGZMOD([], [enable_ggz=no])
++#	AC_GGZ_CONFIG([], [enable_ggz=no])
++#	if test x$enable_ggz = xyes; then
++#		AC_GGZ_VERSION(0, 0, 12)
++#		AC_DEFINE([WITH_GGZ], 1, [Enable GGZ support])
++#	fi
++#fi
++#AM_CONDITIONAL([GGZSUPPORT], [test "x$enable_ggz" = "xyes"])
+ 
+ 
+ dnl ...the standard screen resolution...
+--- freelords-0.3.7/dat/ggz/Makefile.am~	2006-03-01 22:05:33.000000000 +0100
++++ freelords-0.3.7/dat/ggz/Makefile.am	2006-11-08 21:11:03.000000000 +0100
+@@ -1,15 +1,15 @@
+-if GGZSUPPORT
+-gamedir = $(ggzdconfdir)/games
+-game_DATA = freelords-server.dsc
++#if GGZSUPPORT
++#gamedir = $(ggzdconfdir)/games
++#game_DATA = freelords-server.dsc
+ 
+-roomdir = $(ggzdconfdir)/rooms
+-room_DATA = freelords-server.room
++#roomdir = $(ggzdconfdir)/rooms
++#room_DATA = freelords-server.room
+ 
+-install-data-local:
+-	$(GGZ_CONFIG) -D --force --install --modfile=freelords.dsc
++#install-data-local:
++#	$(GGZ_CONFIG) -D --force --install --modfile=freelords.dsc
+ 
+-uninstall:
+-	$(GGZ_CONFIG) --remove --modfile=freelords.dsc
+-endif 
+-EXTRA_DIST = README.GGZ freelords-server.room
++#uninstall:
++#	$(GGZ_CONFIG) --remove --modfile=freelords.dsc
++#endif 
++#EXTRA_DIST = README.GGZ freelords-server.room
+ 
