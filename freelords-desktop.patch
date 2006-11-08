@@ -1,0 +1,21 @@
+--- freelords-0.3.7/dat/freelords.desktop~	2006-03-01 22:05:33.000000000 +0100
++++ freelords-0.3.7/dat/freelords.desktop	2006-11-08 22:07:43.000000000 +0100
+@@ -5,13 +5,15 @@
+ GenericName=Turn-based strategy game
+ GenericName[de]=Rundenbasiertes Strategiespiel
+ GenericName[it]=Gioco Strategico a turni
++GenericName[pl]=Turowa gra strategiczna
+ Comment=A clone of W#rl#rds
+ Comment[de]=Ein Klon von W#rl#rds
+ Comment[it]=Un clone di W#rl#rds
++Comment[pl]=Klon gry W#rl#rds
+ 
+ Type=Application
+ Exec=freelords
+-Icon=freelords
++Icon=freelords.png
+ Terminal=false
+-Categories=StrategyGame;X-SDL;
+-
++Categories=Game;StrategyGame;
++# vi: encoding=utf-8
