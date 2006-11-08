@@ -11,6 +11,7 @@ Source1:	%{name}rc.conf
 Patch0:		%{name}-configure_in.patch
 Patch1:		%{name}-types.patch
 Patch2:		%{name}-undefined_macros.patch
+Patch3:		%{name}-desktop.patch
 URL:		http://freelords.sourceforge.net/
 BuildRequires:	SDL_image-devel >= 1.2.0
 BuildRequires:	autoconf
@@ -38,6 +39,7 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -49,12 +51,13 @@ sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/freelordsrc
+install dat/various/%{name}.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %find_lang %{name}
 
@@ -67,3 +70,5 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
+%{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{name}.png
