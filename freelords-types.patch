@@ -1,50 +1,6 @@
---- freelords-0.3.3/src/templelist.cpp.orig	2004-07-15 16:47:18.000000000 +0200
-+++ freelords-0.3.3/src/templelist.cpp	2004-08-11 21:24:03.885860820 +0200
-@@ -60,7 +60,7 @@
-     bool retval = true;
- 
-     retval &= helper->openTag("templelist");
--    retval &= helper->saveData("size", size());
-+    retval &= helper->saveData("size", (unsigned int)size());
- 
-     for (iterator it = begin(); it != end(); it++)
-         retval &= it->save(helper);
---- freelords-0.3.3/src/ruinlist.cpp.orig	2004-07-15 16:47:18.000000000 +0200
-+++ freelords-0.3.3/src/ruinlist.cpp	2004-08-11 21:24:39.135426731 +0200
-@@ -59,7 +59,7 @@
-     bool retval = true;
- 
-     retval &= helper->openTag("ruinlist");
--    retval &= helper->saveData("size", size());
-+    retval &= helper->saveData("size", (unsigned int)size());
- 
-     for (iterator it = begin(); it != end(); it++)
-         retval &= it->save(helper);
---- freelords-0.3.3/src/citylist.cpp.orig	2004-07-15 16:47:18.000000000 +0200
-+++ freelords-0.3.3/src/citylist.cpp	2004-08-11 21:26:28.067361752 +0200
-@@ -119,7 +119,7 @@
-     bool retval = true;
- 
-     retval &= helper->openTag("citylist");
--    retval &= helper->saveData("size", size());    //for checking later
-+    retval &= helper->saveData("size", (unsigned int)size());    //for checking later
- 
-     for (iterator it = begin(); it != end(); it++)
-         it->save(helper);
---- freelords-0.3.3/src/stacklist.cpp.orig	2004-07-15 16:47:18.000000000 +0200
-+++ freelords-0.3.3/src/stacklist.cpp	2004-08-11 21:27:39.962158089 +0200
-@@ -211,7 +211,7 @@
-     bool retval = true;
- 
-     retval &= helper->openTag("stacklist");
--    retval &= helper->saveData("size", size());
-+    retval &= helper->saveData("size", (unsigned int)size());
-     if (d_activestack)
-     {
-         retval &= helper->saveData("active", d_activestack->getId());
---- freelords-0.3.3/src/path.cpp.orig	2004-07-15 16:47:18.000000000 +0200
-+++ freelords-0.3.3/src/path.cpp	2004-08-11 21:28:53.583540595 +0200
-@@ -628,7 +628,7 @@
+--- freelords-0.3.7/src/path.cpp~	2006-03-01 22:05:35.000000000 +0100
++++ freelords-0.3.7/src/path.cpp	2006-11-11 14:07:55.000000000 +0100
+@@ -71,7 +71,7 @@
      }
  
      retval &= helper->openTag("path");
@@ -53,14 +9,3 @@
      retval &= helper->saveData("x", sx.str());
      retval &= helper->saveData("y", sy.str());
      retval &= helper->closeTag();
---- freelords-0.3.3/src/playerlist.cpp.orig	2004-07-15 16:47:18.000000000 +0200
-+++ freelords-0.3.3/src/playerlist.cpp	2004-08-11 21:31:15.609552037 +0200
-@@ -210,7 +210,7 @@
-     bool retval = true;
- 
-     retval &= helper->openTag("playerlist");
--    retval &= helper->saveData("size", size());    //just to make sure
-+    retval &= helper->saveData("size", (unsigned int)size());    //just to make sure
-     retval &= helper->saveData("active", d_activeplayer->getId());
- 
-     for (iterator it = begin(); it != end(); it++)
