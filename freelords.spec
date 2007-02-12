@@ -1,5 +1,5 @@
 Summary:	Turn-based strategy game
-Summary(pl):	Turowa gra strategiczna
+Summary(pl.UTF-8):   Turowa gra strategiczna
 Name:		freelords
 Version:	0.3.7
 Release:	0.1
@@ -29,10 +29,10 @@ FreeLords is a turn-based strategy game. There can be various goals to
 achieve like e.g.: destroying all enemies, gathering a specific amount
 of money, occupying a certain city, ...
 
-%description -l pl
-FreeLords to gra strategiczna z podzia³em na tury. Cele gry mog± byæ
-ró¿ne np. zniszczenie wszystkich przeciwników, zebranie okre¶lonej
-sumy pieniêdzy, okupacja okre¶lonego miasta i inne.
+%description -l pl.UTF-8
+FreeLords to gra strategiczna z podziaÅ‚em na tury. Cele gry mogÄ… byÄ‡
+rÃ³Å¼ne np. zniszczenie wszystkich przeciwnikÃ³w, zebranie okreÅ›lonej
+sumy pieniÄ™dzy, okupacja okreÅ›lonego miasta i inne.
 
 %prep
 %setup -q
