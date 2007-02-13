@@ -1,5 +1,5 @@
 Summary:	Turn-based strategy game
-Summary(pl.UTF-8):   Turowa gra strategiczna
+Summary(pl.UTF-8):	Turowa gra strategiczna
 Name:		freelords
 Version:	0.3.7
 Release:	0.1
