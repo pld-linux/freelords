@@ -1,6 +1,6 @@
---- freelords-0.3.7/configure.ac~	2006-11-08 20:57:29.000000000 +0100
-+++ freelords-0.3.7/configure.ac	2006-11-08 21:04:17.000000000 +0100
-@@ -168,22 +168,22 @@
+--- freelords-0.3.8/configure.ac~	2007-06-19 11:48:14.000000000 +0200
++++ freelords-0.3.8/configure.ac	2007-06-19 11:45:54.000000000 +0200
+@@ -176,25 +176,25 @@
  AM_CONDITIONAL([WANT_EDITOR], [test $use_editor = "yes"])
  
  dnl Should GGZ support be compiled in for server and client?
@@ -8,6 +8,11 @@
 -             [  --enable-ggz    enable ggz support (default=no)],,
 -             enable_ggz=no
 -)
++#AC_ARG_ENABLE(ggz,
++#             [  --enable-ggz    enable ggz support (default=no)],,
++#             enable_ggz=no
++#)
+ 	
 -if test x$enable_ggz = xyes; then
 -	AC_GGZ_INIT(defaults, export)
 -	AC_GGZ_GGZDMOD([], [enable_ggz=no])
@@ -18,12 +23,10 @@
 -		AC_GGZ_VERSION(0, 0, 12)
 -		AC_DEFINE([WITH_GGZ], 1, [Enable GGZ support])
 -	fi
+-else
+-AC_GGZ_CHECK
 -fi
 -AM_CONDITIONAL([GGZSUPPORT], [test "x$enable_ggz" = "xyes"])
-+#AC_ARG_ENABLE(ggz,
-+#             [  --enable-ggz    enable ggz support (default=no)],,
-+#             enable_ggz=no
-+#)
 +#if test x$enable_ggz = xyes; then
 +#	AC_GGZ_INIT(defaults, export)
 +#	AC_GGZ_GGZDMOD([], [enable_ggz=no])
@@ -34,13 +37,15 @@
 +#		AC_GGZ_VERSION(0, 0, 12)
 +#		AC_DEFINE([WITH_GGZ], 1, [Enable GGZ support])
 +#	fi
++#else
++#AC_GGZ_CHECK
 +#fi
 +#AM_CONDITIONAL([GGZSUPPORT], [test "x$enable_ggz" = "xyes"])
  
  
  dnl ...the standard screen resolution...
---- freelords-0.3.7/dat/ggz/Makefile.am~	2006-03-01 22:05:33.000000000 +0100
-+++ freelords-0.3.7/dat/ggz/Makefile.am	2006-11-08 21:11:03.000000000 +0100
+--- freelords-0.3.8/dat/ggz/Makefile.am~	2007-06-19 11:50:15.000000000 +0200
++++ freelords-0.3.8/dat/ggz/Makefile.am	2007-06-19 11:43:50.000000000 +0200
 @@ -1,15 +1,15 @@
 -if GGZSUPPORT
 -gamedir = $(ggzdconfdir)/games
