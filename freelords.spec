@@ -1,17 +1,18 @@
 Summary:	Turn-based strategy game
 Summary(pl.UTF-8):	Turowa gra strategiczna
 Name:		freelords
-Version:	0.3.7
-Release:	0.1
+Version:	0.3.8
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games/Strategy
 Source0:	http://dl.sourceforge.net/freelords/%{name}-%{version}.tar.bz2
-# Source0-md5:	ccf8b4fbc1dea0f29d2ef3b06b55a957
+# Source0-md5:	e8b0047cd9410d0b33607a206e816c50
 Source1:	%{name}rc.conf
 Patch0:		%{name}-configure_in.patch
 Patch1:		%{name}-types.patch
 Patch2:		%{name}-undefined_macros.patch
 Patch3:		%{name}-desktop.patch
+Patch4:		%{name}-mkinstalldirs.patch
 URL:		http://freelords.sourceforge.net/
 BuildRequires:	SDL_image-devel >= 1.2.0
 BuildRequires:	autoconf
@@ -40,6 +41,7 @@ sumy pieniędzy, okupacja określonego miasta i inne.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}
