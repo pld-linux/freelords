@@ -1,0 +1,11 @@
+--- freelords-0.3.8/po/Makefile.in.in~	2007-05-02 23:40:54.000000000 +0200
++++ freelords-0.3.8/po/Makefile.in.in	2007-06-20 11:54:44.000000000 +0200
+@@ -28,7 +28,7 @@
+ 
+ INSTALL = @INSTALL@
+ INSTALL_DATA = @INSTALL_DATA@
+-MKINSTALLDIRS = @MKINSTALLDIRS@
++MKINSTALLDIRS = /usr/share/automake/mkinstalldirs
+ mkinstalldirs = $(SHELL) $(MKINSTALLDIRS)
+ 
+ GMSGFMT = @GMSGFMT@
