@@ -2,7 +2,7 @@ Summary:	Turn-based strategy game
 Summary(pl.UTF-8):	Turowa gra strategiczna
 Name:		freelords
 Version:	0.3.8
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Games/Strategy
 Source0:	http://dl.sourceforge.net/freelords/%{name}-%{version}.tar.bz2
@@ -13,6 +13,7 @@ Patch1:		%{name}-types.patch
 Patch2:		%{name}-undefined_macros.patch
 Patch3:		%{name}-desktop.patch
 Patch4:		%{name}-mkinstalldirs.patch
+Patch5:		%{name}-makefileam.patch
 URL:		http://freelords.sourceforge.net/
 BuildRequires:	SDL_image-devel >= 1.2.0
 BuildRequires:	autoconf
@@ -31,9 +32,10 @@ achieve like e.g.: destroying all enemies, gathering a specific amount
 of money, occupying a certain city, ...
 
 %description -l pl.UTF-8
-FreeLords to gra strategiczna z podziałem na tury. Cele gry mogą być
-różne np. zniszczenie wszystkich przeciwników, zebranie określonej
-sumy pieniędzy, okupacja określonego miasta i inne.
+FreeLords to turowa gra strategiczna wzorowana na klasycznej grze
+Warlords. Cele gry mogą być różne np. zniszczenie wszystkich
+przeciwników, zebranie określonej sumy pieniędzy, okupacja określonego
+miasta i inne.
 
 %prep
 %setup -q
@@ -42,10 +44,11 @@ sumy pieniędzy, okupacja określonego miasta i inne.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
 %configure
@@ -69,8 +72,10 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/* AUTHORS ChangeLog NEWS TODO
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
-%attr(755,root,root) %{_bindir}/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/freelordsrc
+%attr(755,root,root) %{_bindir}/freelords
+%attr(755,root,root) %{_bindir}/freelords_editor
+%attr(755,root,root) %{_bindir}/freelords_server
 %{_datadir}/%{name}
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/%{name}.png
