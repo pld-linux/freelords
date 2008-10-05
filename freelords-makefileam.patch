@@ -1,0 +1,10 @@
+diff -Naur freelords-0.3.8.orig/Makefile.am freelords-0.3.8/Makefile.am
+--- freelords-0.3.8.orig/Makefile.am	2007-05-02 23:40:54.000000000 +0200
++++ freelords-0.3.8/Makefile.am	2008-10-05 23:30:12.000000000 +0200
+@@ -4,6 +4,3 @@
+ 
+ freelordsconfigdir = $(FREELORDS_DATADIR)
+ #freelordsconfig_DATA = freelordsrc
+-
+-ACLOCAL_AMFLAGS = -I ./m4
+-
